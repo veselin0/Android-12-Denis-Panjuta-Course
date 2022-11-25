@@ -97,6 +97,18 @@ fun main(){
         println("You can drive and you can drink")
     }
 
+    // If Statements Part 2
+    var name = "Gocho"
+
+    if (name == "Gocho") {
+        println("Welcome home, Gocho")
+    } else {
+        println("Who are you?")
+    }
+
+    var isRainy = true
+    if (isRainy) println("I is rainy")
+
 }
 
 
