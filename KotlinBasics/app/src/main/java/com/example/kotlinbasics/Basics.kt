@@ -36,5 +36,20 @@ fun main(){
     var lastCharInStr = myStr[myStr.length - 1]
     
     // print("First character $firstCharInStr")
-    print("Last Character $lastCharInStr")
+    // print("Last Character $lastCharInStr")
+
+    // Exercise Variables And Datatype
+
+    var courseTitle: String = "Android Masterclass"
+    var floatNum: Float = 13.37F
+    var doublePi: Double = 3.14159265358979
+    var age: Byte = 25
+    // var intNum: Short = 25
+    var year: Short = 2020
+    // var shortNum: Int = 2020
+    var longNum: Long = 18881234567
+    var myBool: Boolean = true
+    var myChar: Char = 'a'
+
+
 }
