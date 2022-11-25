@@ -109,6 +109,46 @@ fun main(){
     var isRainy = true
     if (isRainy) println("I is rainy")
 
+    var season = 3
+    when (season) {
+        1 -> println("Spring")
+        2 -> println("Summer")
+        3 -> {
+            println("Fall")
+            println("Autumn")
+        }
+        4 -> println("Winter")
+        else -> {
+            println("Invalid Season")
+        }
+    }
+
+    var month = 3
+    when (month) {
+        in 3..5 -> println("Spring")
+        in 6..8 -> println("Summer")
+        in 9..11 -> println("Fall")
+        // in 12 downTo 2 -> println("Winter")
+        12, 1, 2 -> println("Winter")
+        else -> println("Invalid Season")
+    }
+
+    var aged = 19
+    when (aged) {
+        16,17 -> println("You can drive now, but you can't vote and you can't drink")
+        in 18..20 -> println("You can drive and vote now, but you can't drink " )
+        !in 0..20 -> println("You can do whatever you want, it's up to you")
+        else -> println("You are to young")
+    }
+
+    var x: Any = 13.37F
+    when (x) {
+        is Int -> println("$x is an Int")
+        !is Double -> println("$x is not a Double")
+        is String -> println("$x is a String")
+        else -> println("$x is none of the above")
+    }
+
 }
 
 
