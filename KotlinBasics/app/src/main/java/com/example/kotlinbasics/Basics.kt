@@ -11,7 +11,7 @@ fun main(){
 
     val myName = "Doc"
 
-    // print("Hello $myName")
+    println("Hello $myName")
     var myAge = 61
     val myByte: Byte = 14
     val myShort: Short = 125
@@ -35,8 +35,8 @@ fun main(){
     var firstCharInStr = myStr[0]
     var lastCharInStr = myStr[myStr.length - 1]
     
-    // print("First character $firstCharInStr")
-    // print("Last Character $lastCharInStr")
+    println("First character $firstCharInStr")
+    println("Last Character $lastCharInStr")
 
     // Exercise Variables And Datatype
 
@@ -51,5 +51,16 @@ fun main(){
     var myBool: Boolean = true
     var myChar: Char = 'a'
 
+    // Comparison operators
+    val isEqual = 5==3
+    println("isEqual is $isEqual")
 
+    val isNotEqual = 5!=5
+    println("isNotEqual is $isNotEqual")
+
+    println("is -5 greater than 3? ${-5 > 3}")
+    println("is 5 LowerEqual to 3? ${5 <= 3}")
 }
+
+
+
