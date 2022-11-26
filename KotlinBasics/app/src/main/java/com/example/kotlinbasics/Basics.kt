@@ -164,6 +164,15 @@ fun main(){
         num--
     }
     println("While loop done")
+
+    // Do While Loop
+
+    x = 15
+    do {
+        println("$x")
+        x++
+    }while (x <= 10)
+    println("Do While Loop done")
 }
 
 
