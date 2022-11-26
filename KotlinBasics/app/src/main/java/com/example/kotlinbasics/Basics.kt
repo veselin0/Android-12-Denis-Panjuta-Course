@@ -225,6 +225,22 @@ Once the humidityLevel is below 60 it should print "it's comfy now" and set the 
             println("It's comfy now")
         }
     }
+
+    // Break and Continue
+
+    for (i in 0 until 20) {
+
+       if (i / 2 == 5)
+           //break
+           continue
+        print("$i ")
+    }
+    print("for loop done")
+
+
+    // Functions
+
+
 }
 
 
