@@ -149,6 +149,21 @@ fun main(){
         else -> println("$x is none of the above")
     }
 
+    // While Loop
+
+    var num = 1
+    while (num <= 10) {
+        print(num)
+        num++
+    }
+    println("\nWhile loop done")
+
+    num = 100
+    while (num >= 0) {
+        println(num)
+        num--
+    }
+    println("While loop done")
 }
 
 
