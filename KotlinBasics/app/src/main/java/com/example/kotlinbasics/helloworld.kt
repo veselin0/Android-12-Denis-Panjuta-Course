@@ -1,18 +1,17 @@
 package com.example.kotlinbasics
-// 47. Nullables In Kotlin
+
+import java.util.*
+
+// 48. Nullables - Elvis Operator - Not Null Assertion
 fun main () {
-    var name: String = "Gotcha"
-    // name = null -> Compilation ERROR
-    var len = name.length
-    println(name)
-    println(len)
-    var nullableName: String? = "Gotcha"
+    var nullableName: String? = "Gocho"
     // nullableName = null
-    var len2 = nullableName?.length
-    println(nullableName)
-    println(len2)
-    // println(nullableName?.toLowerCase())
-    // use safe call operator with let
-    nullableName?.let { println(it.length) }
+
+    // Elvis Operator ?:
+    val name = nullableName ?: "Guest"
+    println("name is $name")
+
+    // Not Null Assertion !!
+    println(nullableName!!.lowercase(Locale.getDefault()))
 }
 
