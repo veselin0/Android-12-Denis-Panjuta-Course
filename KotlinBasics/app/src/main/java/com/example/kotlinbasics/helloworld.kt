@@ -1,20 +1,18 @@
 package com.example.kotlinbasics
-// Functioins
+// 47. Nullables In Kotlin
 fun main () {
-    var avg = avg(2.0,3.0)
-    println(avg)
-    var add = add(5,6)
-    println(add)
+    var name: String = "Gotcha"
+    // name = null -> Compilation ERROR
+    var len = name.length
+    println(name)
+    println(len)
+    var nullableName: String? = "Gotcha"
+    // nullableName = null
+    var len2 = nullableName?.length
+    println(nullableName)
+    println(len2)
+    // println(nullableName?.toLowerCase())
+    // use safe call operator with let
+    nullableName?.let { println(it.length) }
 }
 
-fun myFunction () {
-    println ("Gotcha is here again!")
-}
-
-fun add (a: Int, b: Int): Int {
-    return a + b
-}
-
-fun avg (num1: Double, num2: Double): Double{
-    return (num1 + num2) / 2
-}
