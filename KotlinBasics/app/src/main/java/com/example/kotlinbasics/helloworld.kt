@@ -1,17 +1,17 @@
 package com.example.kotlinbasics
 
-import java.util.*
-
-// 48. Nullables - Elvis Operator - Not Null Assertion
+// 54. Classes And Initializers
 fun main () {
-    var nullableName: String? = "Gocho"
-    // nullableName = null
+    // Creating instances of clases
+    var gocho = Person("Gocho", "Kochev")
+    var john = Person()
+    var dochev = Person(lastName = "Dochev")
 
-    // Elvis Operator ?:
-    val name = nullableName ?: "Guest"
-    println("name is $name")
-
-    // Not Null Assertion !!
-    println(nullableName!!.lowercase(Locale.getDefault()))
 }
 
+class Person(firstName: String = "John", lastName: String = "Doe") {
+    init {
+        println("Created a new Person object with a firstName $firstName " +
+                "and lastName $lastName")
+    }
+}
