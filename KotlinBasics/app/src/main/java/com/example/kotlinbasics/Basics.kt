@@ -183,6 +183,21 @@ fun main(){
         x++
     }while (x <= 10)
     println("Do While Loop done")
+
+    // For Loop
+
+    for (num in 1..10) {
+        print("$num")
+    }
+
+    for (i in 1 until 10) {
+        print(" $i ")
+    }
+    println("")
+    for (j in 10 downTo 1 step 2) {
+        print("  $j  ")
+    }
+
 }
 
 
