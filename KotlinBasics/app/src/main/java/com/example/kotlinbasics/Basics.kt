@@ -165,6 +165,16 @@ fun main(){
     }
     println("While loop done")
 
+    var feltTemp = "cold"
+    var roomTemp = 10
+    while (feltTemp == "cold") {
+        roomTemp++
+        if (roomTemp >= 20) {
+            feltTemp = "comfy"
+            println("It's comfy now")
+        }
+    }
+
     // Do While Loop
 
     x = 15
