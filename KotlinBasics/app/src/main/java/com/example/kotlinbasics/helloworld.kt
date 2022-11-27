@@ -1,38 +1,26 @@
 package com.example.kotlinbasics
 
-import java.lang.IllegalArgumentException
-import java.util.*
+//61. Data Classes
 
-// 59. Lateinit Plus Setters And Getters
+data class User (val id: Long, var name: String)
 
 fun main () {
-    var myCar = Car ()
-    println ("My car's brand is ${myCar.myBrand}")
-    myCar.maxSpeed = 240
-    println ("My car's max speed is ${myCar.maxSpeed}")
-    println ("My car's model is ${myCar.myModel}")
+    val user1 = User (1, "Gocho")
+
+    user1.name = "Bocho"
+    val user2 = User (1, "Bocho")
+    println (user1 == user2)
+
+    println ("User Details: $user1")
+
+    val updatedUser = user1.copy(name = "Docho Bochev")
+    println (user1)
+    println (updatedUser)
+
+    println (updatedUser.component1())
+    println (updatedUser.component2())
+
+    val (id, name) = updatedUser
+    println ("id is $id and name is $name")
 }
 
-class Car () {
-    lateinit var owner: String
-
-    val myBrand = "BMW"
-        get() {
-        return field.lowercase(Locale.getDefault())
-    }
-
-    var maxSpeed: Int = 250
-        // get() = field
-        set(value) {
-            field = if (value > 0) value else
-                throw IllegalArgumentException("The speed must be a positive number")
-        }
-
-    var myModel: String = "M5"
-        private set
-
-    init {
-        this.myModel = "M3"
-        this.owner = "Gocho"
-    }
-}
