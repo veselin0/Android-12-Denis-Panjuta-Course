@@ -1,26 +1,39 @@
 package com.example.kotlinbasics
 
-// 55. Exercise Classes and Objects
-/*
-Please create a class called MobilePhone. It should have three primary constructor variables, osName, brand and model.
+// 58. Member Variables - Functions And Constructors
 
-Use the initializer to print those details.
-
-Create three objects of that class in the Main function.
-
-Examples of phones would be:
-Samsung Galaxy S20 Ultra. Here the osName is Android, brand is Samsung, model is Galaxy S20 Ultra
- */
 fun main () {
-    var samsung = MobilePhone("Android 12", "Samsung", "Galaxy S20 Ultra")
-    var umi = MobilePhone("Android 5.0", "Umi", "Umi Iron")
-    var xiaomi = MobilePhone("Android 15", "Xiaomi", "Sup22")
-
+    var gotcha = Person("Gotcha", "Koch", 62)
+    gotcha.age = 61
+    println("Gotcha's age is ${gotcha.age}")
+    gotcha.hobby = "Horse Raises"
+    gotcha.stateHobby()
+    var john = Person()
+    john.hobby = "Play Chess"
+    john.stateHobby()
 }
 
-class MobilePhone (osName: String, brand: String, model: String) {
+class Person (firstName: String = "John", lastName: String = "Doe") {
+    // Member Variables = Properties
+    var age: Int? = null
+    var hobby: String = "watching HBO"
+    var name: String? = null
+
+    // Initializer Block
     init {
-        println("Created a new MobilePhone object with a osName $osName, " +
-                "brand $brand and model $model")
+        this.name = firstName
+        println("Initialized a new person with a name $firstName and a last name $lastName")
+    }
+
+    // Member Secondary Constructor
+
+    constructor(firstName: String, lastName: String, age: Int): this(firstName, lastName) {
+        this.age = age
+        println("Initialized a new person with a name $firstName, a last name $lastName and an age of $age")
+    }
+
+    // Member Functions = Methods
+    fun stateHobby() {
+        println("$name\'s hobby is $hobby")
     }
 }
