@@ -1,26 +1,42 @@
 package com.example.kotlinbasics
 
-//61. Data Classes
+//62. Challenge Classes
 
-data class User (val id: Long, var name: String)
+/*Please extend our example of the MobilePhone class with
+
+class MobilePhone(osName: String, brand: String, model: String){
+    init {
+        println("The phone $model from $brand uses $osName as its Operating System")
+    }
+}
+Add a member to it, which indicates how much battery is left (call it "battery". Initialize this value with a number between 0 and 50.
+
+Then add a function
+"chargeBattery"
+Which needs details about how much was charged.
+
+It should print out how much battery the phone had before, how much was charged and how much it has now.
+Create an Object of the class and call this function. Charge the battery by 30.*/
 
 fun main () {
-    val user1 = User (1, "Gocho")
-
-    user1.name = "Bocho"
-    val user2 = User (1, "Bocho")
-    println (user1 == user2)
-
-    println ("User Details: $user1")
-
-    val updatedUser = user1.copy(name = "Docho Bochev")
-    println (user1)
-    println (updatedUser)
-
-    println (updatedUser.component1())
-    println (updatedUser.component2())
-
-    val (id, name) = updatedUser
-    println ("id is $id and name is $name")
+    var phone = MobilePhone("Android", "Samsung", "Galaxy")
+    var charge = phone.chargeBat()
 }
 
+
+
+class MobilePhone(osName: String, brand: String, model: String){
+    var battery: Int = 20
+    var chargeBy: Int = 30
+    var stateOfChargeNow: Int = battery + chargeBy
+
+    init {
+        println("The phone $model from $brand uses $osName as its Operating System")
+    }
+
+    fun chargeBat () {
+        println("Previous Battery Charge was ${this.battery}%")
+        println("Than is was charged by ${this.chargeBy}%")
+        println("Now it is charged to ${this.stateOfChargeNow}%")
+    }
+}
