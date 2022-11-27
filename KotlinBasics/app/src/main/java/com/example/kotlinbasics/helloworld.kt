@@ -1,39 +1,38 @@
 package com.example.kotlinbasics
 
-// 58. Member Variables - Functions And Constructors
+import java.lang.IllegalArgumentException
+import java.util.*
+
+// 59. Lateinit Plus Setters And Getters
 
 fun main () {
-    var gotcha = Person("Gotcha", "Koch", 62)
-    gotcha.age = 61
-    println("Gotcha's age is ${gotcha.age}")
-    gotcha.hobby = "Horse Raises"
-    gotcha.stateHobby()
-    var john = Person()
-    john.hobby = "Play Chess"
-    john.stateHobby()
+    var myCar = Car ()
+    println ("My car's brand is ${myCar.myBrand}")
+    myCar.maxSpeed = 240
+    println ("My car's max speed is ${myCar.maxSpeed}")
+    println ("My car's model is ${myCar.myModel}")
 }
 
-class Person (firstName: String = "John", lastName: String = "Doe") {
-    // Member Variables = Properties
-    var age: Int? = null
-    var hobby: String = "watching HBO"
-    var name: String? = null
+class Car () {
+    lateinit var owner: String
 
-    // Initializer Block
+    val myBrand = "BMW"
+        get() {
+        return field.lowercase(Locale.getDefault())
+    }
+
+    var maxSpeed: Int = 250
+        // get() = field
+        set(value) {
+            field = if (value > 0) value else
+                throw IllegalArgumentException("The speed must be a positive number")
+        }
+
+    var myModel: String = "M5"
+        private set
+
     init {
-        this.name = firstName
-        println("Initialized a new person with a name $firstName and a last name $lastName")
-    }
-
-    // Member Secondary Constructor
-
-    constructor(firstName: String, lastName: String, age: Int): this(firstName, lastName) {
-        this.age = age
-        println("Initialized a new person with a name $firstName, a last name $lastName and an age of $age")
-    }
-
-    // Member Functions = Methods
-    fun stateHobby() {
-        println("$name\'s hobby is $hobby")
+        this.myModel = "M3"
+        this.owner = "Gocho"
     }
 }
