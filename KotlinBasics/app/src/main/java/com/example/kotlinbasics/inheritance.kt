@@ -19,7 +19,7 @@ open class  Vehicle {
 
 // Sub, Child, Derived class of Vehicle
 // Super, Parent, Base class of EleCar
-open class Car (val name: String, val brand: String) {
+open class Cars (val name: String, val brand: String) {
    open var range: Double = 0.0
 
    fun extendRange (amount: Double) {
@@ -34,7 +34,7 @@ open class Car (val name: String, val brand: String) {
 }
 
 //  Sub, Child, Derived class of Car
-class EleCar(name: String, brand: String, batteryLife: Double): Car (name, brand) {
+class EleCar(name: String, brand: String, batteryLife: Double): Cars (name, brand) {
 
     var chargerType = "Type1"
 
@@ -50,7 +50,7 @@ class EleCar(name: String, brand: String, batteryLife: Double): Car (name, brand
 }
 
 fun main () {
-    var audiA3 = Car ("A3", "Audi")
+    var audiA3 = Cars ("A3", "Audi")
     var teslaS = EleCar ("S-model", "Tesla", 85.0)
 
     teslaS.chargerType = "Type2"
