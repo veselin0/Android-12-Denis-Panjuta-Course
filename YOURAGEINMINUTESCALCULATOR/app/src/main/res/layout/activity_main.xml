@@ -7,9 +7,7 @@
     android:background="@color/bgColor"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:padding="16dp"
-    >
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,6 +50,7 @@
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/tvSelectedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -63,6 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
         android:text="Selected Date"
         android:textColor="@color/grey"
         android:textSize="18sp"
@@ -80,6 +80,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:text="in minutes to the date"
         android:textColor="@color/grey"
         android:textSize="20sp"
