@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         dpd.datePicker.maxDate = System.currentTimeMillis() - 86400000
         dpd.show()
 
-        Toast.makeText(this,
-            "btnDataPicker pressed", Toast.LENGTH_LONG).show()
+//        Toast.makeText(this,
+//            "btnDataPicker pressed", Toast.LENGTH_LONG).show()
     }
 }
