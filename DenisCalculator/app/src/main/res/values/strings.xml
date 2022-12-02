@@ -6,4 +6,16 @@
     <string name="_btn_eight">8</string>
     <string name="_btn_nine">9</string>
     <string name="_btn_divide">/</string>
+    <string name="_btn_four">4</string>
+    <string name="_btn_five">5</string>
+    <string name="_btn_six">6</string>
+    <string name="_btn_multiply">*</string>
+    <string name="_btn_two">2</string>
+    <string name="_btn_three">3</string>
+    <string name="_btn_subtract">-</string>
+    <string name="_btn_zero">0</string>
+    <string name="_btn_clr">CLR</string>
+    <string name="_btn_dot">.</string>
+    <string name="_btn_add">+</string>
+    <string name="_btn_enter">ENTER</string>
 </resources>

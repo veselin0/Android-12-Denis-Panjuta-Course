@@ -13,12 +13,14 @@
         android:padding="16dp"
         android:textSize="48sp"
         android:text="@string/calc_text"
-        android:gravity="end|bottom"/>
-    
+        android:gravity="end|bottom"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/btnSeven"
@@ -53,6 +55,160 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/_btn_divide"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnFour"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_four"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnFivr"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_five"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnSix"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_six"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnMultiply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_multiply"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnOne"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_one"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnTwo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_two"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnThree"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_three"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnSubtract"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_subtract"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnZero"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_zero"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnDot"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_dot"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnClr"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_clr"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_add"
+            android:layout_margin="2dp"
+            android:onClick="onDigit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+
+
+
+
+
+        <Button
+            android:id="@+id/btnEnter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/_btn_enter"
             android:layout_margin="2dp"
             android:onClick="onDigit"/>
 
