@@ -14,19 +14,30 @@ class MainActivity : AppCompatActivity() {
         val btn9 = findViewById<Button>(R.id.btn_nine)
         val btnDivide = findViewById<Button>(R.id.btnDivide)
 
-        btn7.setOnClickListener(){
-            Toast.makeText(this, "Button 7 pressed!", Toast.LENGTH_SHORT).show()
-        }
-        btn8.setOnClickListener(){
-            Toast.makeText(this, "Button 8 pressed!", Toast.LENGTH_SHORT).show()
-        }
-        btn9.setOnClickListener(){
-            Toast.makeText(this, "Button 9 pressed!", Toast.LENGTH_SHORT).show()
-        }
-        btnDivide.setOnClickListener(){
-            Toast.makeText(this, "Button / pressed!", Toast.LENGTH_SHORT).show()
-        }
+
+        onClick(btn7)
+        onClick(btn8)
+        onClick(btn9)
+        onClick(btnDivide)
+
+//        btn7.setOnClickListener(){
+//            Toast.makeText(this, "Button 7 pressed!", Toast.LENGTH_SHORT).show()
+//        }
+//        btn8.setOnClickListener(){
+//            Toast.makeText(this, "Button 8 pressed!", Toast.LENGTH_SHORT).show()
+//        }
+//        btn9.setOnClickListener(){
+//            Toast.makeText(this, "Button 9 pressed!", Toast.LENGTH_SHORT).show()
+//        }
+//        btnDivide.setOnClickListener(){
+//            Toast.makeText(this, "Button / pressed!", Toast.LENGTH_SHORT).show()
+//        }
     }
 
+    private fun onClick(btn: Button) {
+        btn.setOnClickListener{
+            Toast.makeText(this, "Button  pressed!", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }
