@@ -9,6 +9,8 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
 
     private var tvInput: TextView? = null
+    var lastNumeric: Boolean = false
+    var lastDot: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         val btnClr = findViewById<Button>(R.id.btn_clr)
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         val btnEnter = findViewById<Button>(R.id.btn_enter)
+        val btnDot = findViewById<Button>(R.id.btn_dot)
 
         onClick(btn1)
         onClick(btn2)
@@ -48,12 +51,15 @@ class MainActivity : AppCompatActivity() {
         clr(btnClr)
         onClick(btnAdd)
         onClick(btnEnter)
-
+        dot(btnDot)
     }
 
     private fun onClick(btn: Button) {
+
         btn.setOnClickListener{
-            tvInput?.append("${btn.text}")
+                tvInput?.append("${btn.text}")
+                lastNumeric = true
+                lastDot = false
         }
     }
 
@@ -61,7 +67,16 @@ class MainActivity : AppCompatActivity() {
         btnClr.setOnClickListener{
             tvInput?.text = ""
         }
+    }
 
+    private fun dot(btnDot: Button) {
+        btnDot.setOnClickListener{
+            if (lastNumeric && !lastDot){
+                tvInput?.append(".")
+                lastNumeric = false
+                lastDot = true
+            }
+        }
     }
 
 }

@@ -13,4 +13,5 @@
     <string name="clr">CLR</string>
     <string name="_add">+</string>
     <string name="_enter">=</string>
+    <string name="_dot">.</string>
 </resources>
