@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DenisCalculator</string>
+    <string name="calc_text">0123456789</string>
+    <string name="_btn_one">1</string>
+    <string name="_btn_seven">7</string>
+    <string name="_btn_eight">8</string>
+    <string name="_btn_nine">9</string>
+    <string name="_btn_divide">/</string>
+</resources>
