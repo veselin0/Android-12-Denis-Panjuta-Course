@@ -64,4 +64,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun onEnter(view: View){
+        if (lastNum) {
+            var tvValue = tvInput?.text.toString()
+            var prefix = ""
+
+            try {
+                if (tvValue.startsWith("-")) {
+                    prefix = "-"
+                    tvValue = tvValue.substring(1)
+                }
+                if (tvValue.contains("-")) {
+                    val splitValue = tvValue.split("-")
+
+                    var one = splitValue[0]
+                    var two = splitValue[1]
+
+                    if (prefix.isNotEmpty()){
+                        one = prefix + one
+                    }
+                    
+                    var res = one.toDouble() - two.toDouble()
+                    tvInput?.text = res.toString()
+                }
+
+
+            } catch (e: java.lang.ArithmeticException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
 }

@@ -17,5 +17,5 @@
     <string name="_btn_clr">CLR</string>
     <string name="_btn_dot">.</string>
     <string name="_btn_add">+</string>
-    <string name="_btn_enter">ENTER</string>
+    <string name="_btn_enter">=</string>
 </resources>
