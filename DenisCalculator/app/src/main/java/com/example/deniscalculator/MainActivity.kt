@@ -64,6 +64,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private  fun removeTrailingZero (result: String): String {
+        var value = result
+        if (result.contains(".0")) {
+            value = result.substring(0, value.length - 2)
+        }
+        return value
+
+    }
+
     fun onEnter(view: View){
         if (lastNum) {
             var tvValue = tvInput?.text.toString()
@@ -83,9 +92,45 @@ class MainActivity : AppCompatActivity() {
                     if (prefix.isNotEmpty()){
                         one = prefix + one
                     }
-                    
+
                     var res = one.toDouble() - two.toDouble()
-                    tvInput?.text = res.toString()
+                    tvInput?.text = removeTrailingZero(res.toString())
+                } else if (tvValue.contains("+")) {
+                    val splitValue = tvValue.split("+")
+
+                    var one = splitValue[0]
+                    var two = splitValue[1]
+
+                    if (prefix.isNotEmpty()){
+                        one = prefix + one
+                    }
+
+                    var res = one.toDouble() + two.toDouble()
+                    tvInput?.text = removeTrailingZero(res.toString())
+                } else if (tvValue.contains("/")) {
+                    val splitValue = tvValue.split("/")
+
+                    var one = splitValue[0]
+                    var two = splitValue[1]
+
+                    if (prefix.isNotEmpty()){
+                        one = prefix + one
+                    }
+
+                    var res = one.toDouble() / two.toDouble()
+                    tvInput?.text = removeTrailingZero(res.toString())
+                } else if (tvValue.contains("*")) {
+                    val splitValue = tvValue.split("*")
+
+                    var one = splitValue[0]
+                    var two = splitValue[1]
+
+                    if (prefix.isNotEmpty()){
+                        one = prefix + one
+                    }
+
+                    var res = one.toDouble() * two.toDouble()
+                    tvInput?.text = removeTrailingZero(res.toString())
                 }
 
 
