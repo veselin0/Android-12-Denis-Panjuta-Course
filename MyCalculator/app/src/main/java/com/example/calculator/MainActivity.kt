@@ -8,7 +8,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var tvInput: TextView? = null
+    private var tvInput: TextView? = findViewById(R.id.tvInput)
     private val btn1 = findViewById<Button>(R.id.btn_one)
     private val btn2 = findViewById<Button>(R.id.btn_two)
     private val btn3 = findViewById<Button>(R.id.btn_three)
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvInput = findViewById(R.id.tvInput)
 
 
 
@@ -52,10 +51,10 @@ class MainActivity : AppCompatActivity() {
         onClick(btn9)
 //        operatorClick(btnDivide)
         onClick(btn0)
-        clr(btnClr)
+//        clr(btnClr)
 //        operatorClick(btnAdd)
         onClick(btnEnter)
-        dot(btnDot)
+//        dot(btnDot)
     }
 
     private fun onClick(btn: Button) {
@@ -67,21 +66,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun clr(btnClr: Button){
-        btnClr.setOnClickListener{
-            tvInput?.text = ""
-        }
-    }
+//    private fun clr(btnClr: Button){
+//        btnClr.setOnClickListener{
+//            tvInput?.text = ""
+//        }
+//    }
 
-    private fun dot(btnDot: Button) {
-        btnDot.setOnClickListener{
-            if (lastNumeric && !lastDot){
-                tvInput?.append(".")
-                lastNumeric = false
-                lastDot = true
-            }
-        }
-    }
+//    private fun dot(btnDot: Button) {
+//        btnDot.setOnClickListener{
+//            if (lastNumeric && !lastDot){
+//                tvInput?.append(".")
+//                lastNumeric = false
+//                lastDot = true
+//            }
+//        }
+//    }
 
 //    private fun operatorClick(btn: Button){
 //        btn.setOnClickListener{
