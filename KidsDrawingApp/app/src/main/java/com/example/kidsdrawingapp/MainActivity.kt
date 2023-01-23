@@ -4,6 +4,7 @@ import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import com.example.kidsdrawingapp.databinding.ActivityMainBinding
 
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         drawingView = binding.drawingView
         drawingView?.setSizeForBrush(20.toFloat())
 
+        val ib_brush: ImageButton = binding.imageButtonBrush
+        ib_brush.setOnClickListener {
+            showBrushSizeChooserDialog()
+        }
 
     }
 
