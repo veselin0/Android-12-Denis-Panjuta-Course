@@ -23,27 +23,32 @@ class MainActivity : AppCompatActivity() {
                 if (isGranted) {
                     if (permissionName == Manifest.permission.ACCESS_FINE_LOCATION) {
                         Toast.makeText(
-                            this, "Location Permission Granted",
+                            this, "Fine Location Permission Granted",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else if (permissionName == Manifest.permission.ACCESS_COARSE_LOCATION) {
+                        Toast.makeText(
+                            this, "Coarse Location Permission Granted",
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
-
-
                         Toast.makeText(
                             this, "Camera Permission Granted",
                             Toast.LENGTH_LONG
                         ).show()
                     }
-
                 } else {
                     if (permissionName == Manifest.permission.ACCESS_FINE_LOCATION) {
                         Toast.makeText(
-                            this, "Location Permission Denied",
+                            this, "Fine Location Permission Denied",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else if (permissionName == Manifest.permission.ACCESS_COARSE_LOCATION) {
+                        Toast.makeText(
+                            this, "Coarse Location Permission Denied",
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
-
-
                         Toast.makeText(
                             this, "Camera Permission Denied",
                             Toast.LENGTH_LONG
@@ -66,7 +71,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 cameraAndLocationResultLauncher.launch(
                     arrayOf(Manifest.permission.CAMERA,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
                 )
             }
         }
