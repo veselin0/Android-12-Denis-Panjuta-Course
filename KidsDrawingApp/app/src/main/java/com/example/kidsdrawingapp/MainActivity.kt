@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
-                    if (permissionName == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                    if (permissionName == Manifest.permission.READ_MEDIA_IMAGES) {
                         Toast.makeText(
                             this@MainActivity, "Oops you just denied the permission",
                             Toast.LENGTH_LONG
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         val linearLayoutPainColors = binding.linearLayoutPrintColors
         mImageButtonCurrentPaint = linearLayoutPainColors[1] as ImageButton
-        mImageButtonCurrentPaint!!.setImageDrawable(
+        mImageButtonCurrentPaint.setImageDrawable(
             ContextCompat.getDrawable(this, R.drawable.palette_pressed)
         )
 
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
                 ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_MEDIA_IMAGES
                 )
             ) {
                 showRationaleDialog(
@@ -83,8 +83,10 @@ class MainActivity : AppCompatActivity() {
                     "Kids Drawing App needs access to your External Storage"
                 )
             } else {
-                permissionsResultLauncher
-                    .launch(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissionsResultLauncher
+                        .launch(arrayOf(Manifest.permission.READ_MEDIA_IMAGES))
+                }
 //                TODO - Add writing external storage permission
             }
         }
