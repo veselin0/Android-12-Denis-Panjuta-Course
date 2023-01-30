@@ -15,6 +15,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.example.kidsdrawingapp.databinding.ActivityMainBinding
 import android.Manifest
+import android.content.Intent
+import android.provider.MediaStore
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 
@@ -24,6 +27,15 @@ class MainActivity : AppCompatActivity() {
 
     private var drawingView: DrawingView? = null
     private lateinit var mImageButtonCurrentPaint: ImageButton
+
+    val openGalleryLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                val imageBackground: ImageView = binding.imageViewBackground
+
+                imageBackground.setImageURI(result.data?.data)
+            }
+        }
 
     private val permissionsResultLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(
@@ -38,6 +50,13 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity, "Permission granted now you can read storage",
                         Toast.LENGTH_LONG
                     ).show()
+
+                    val pickIntent = Intent(
+                        Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    )
+                    openGalleryLauncher.launch(pickIntent)
+
                 } else {
                     if (permissionName == Manifest.permission.READ_MEDIA_IMAGES) {
                         Toast.makeText(
