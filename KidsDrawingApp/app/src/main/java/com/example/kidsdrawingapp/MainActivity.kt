@@ -16,13 +16,23 @@ import androidx.core.view.get
 import com.example.kidsdrawingapp.databinding.ActivityMainBinding
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.provider.MediaStore
+import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -72,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -102,27 +113,60 @@ class MainActivity : AppCompatActivity() {
             drawingView?.onClickRedo()
         }
 
+        val ibSave: ImageButton = binding.imageButtonSave
+        ibSave.setOnClickListener {
+
+            if (isReadStorageAllowed()) {
+                lifecycleScope.launch {
+                    val flDrawingView: FrameLayout =
+                        findViewById(R.id.frame_layout_drawing_view_container)
+
+                   saveBitmapFile(getBitmapFromView(flDrawingView))
+                }
+            }
+
+        }
+
         val ibGallery: ImageButton = binding.imageButtonGallery
         ibGallery.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.READ_MEDIA_IMAGES
-                )
-            ) {
-                showRationaleDialog(
-                    "Kids Drawing App",
-                    "Kids Drawing App needs access to your External Storage"
-                )
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    permissionsResultLauncher
-                        .launch(arrayOf(Manifest.permission.READ_MEDIA_IMAGES))
-                }
-//                TODO - Add writing external storage permission
+            requestStoragePermission()
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun isReadStorageAllowed(): Boolean {
+        val result = ContextCompat.checkSelfPermission(this,
+        Manifest.permission.READ_MEDIA_IMAGES)
+
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.READ_MEDIA_IMAGES
+            )
+        ) {
+            showRationaleDialog(
+                "Kids Drawing App",
+                "Kids Drawing App needs access to your External Storage"
+            )
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                permissionsResultLauncher
+                    .launch(
+                        arrayOf(
+                            Manifest.permission.READ_MEDIA_IMAGES,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        )
+                    )
             }
+
         }
     }
+
 
     private fun showRationaleDialog(
         title: String,
@@ -180,8 +224,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getBitmapFromView(view: View): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(view.width, view.height,
-            Bitmap.Config.ARGB_8888)
+        val returnedBitmap = Bitmap.createBitmap(
+            view.width, view.height,
+            Bitmap.Config.ARGB_8888
+        )
         val canvas = Canvas(returnedBitmap)
         val bgDrawable = view.background
         if (bgDrawable != null) {
@@ -193,6 +239,50 @@ class MainActivity : AppCompatActivity() {
         view.draw(canvas)
 
         return returnedBitmap
+    }
+
+    private suspend fun saveBitmapFile(mBitmap: Bitmap?): String {
+        var result = ""
+        withContext(Dispatchers.IO) {
+            if (mBitmap != null) {
+                try {
+                    val bytes = ByteArrayOutputStream()
+                    mBitmap.compress(Bitmap.CompressFormat.PNG, 90, bytes)
+
+                    val f = File(
+                        externalCacheDir?.absoluteFile.toString()
+                                + File.separator + "KidsDrawing_" + System.currentTimeMillis() / 1000
+                                + ".png"
+                    )
+
+                    val fo = FileOutputStream(f)
+                    fo.write(bytes.toByteArray())
+                    fo.close()
+
+                    result = f.absolutePath
+
+                    runOnUiThread {
+                        if (result.isNotEmpty()) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "File saved successfully :" +
+                                        result, Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Something went wrong saving the file.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    result = ""
+                    e.printStackTrace()
+                }
+            }
+        }
+        return result
     }
 
 }
