@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity() {
     private var drawingView: DrawingView? = null
     private lateinit var mImageButtonCurrentPaint: ImageButton
 
-    val openGalleryLauncher: ActivityResultLauncher<Intent> =
+    var customProgressDialog: Dialog? = null
+
+    private val openGalleryLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
                 val imageBackground: ImageView = binding.imageViewBackground
@@ -117,11 +119,12 @@ class MainActivity : AppCompatActivity() {
         ibSave.setOnClickListener {
 
             if (isReadStorageAllowed()) {
+                showProgressDialog()
                 lifecycleScope.launch {
                     val flDrawingView: FrameLayout =
                         findViewById(R.id.frame_layout_drawing_view_container)
 
-                   saveBitmapFile(getBitmapFromView(flDrawingView))
+                    saveBitmapFile(getBitmapFromView(flDrawingView))
                 }
             }
 
@@ -136,8 +139,10 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun isReadStorageAllowed(): Boolean {
-        val result = ContextCompat.checkSelfPermission(this,
-        Manifest.permission.READ_MEDIA_IMAGES)
+        val result = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_MEDIA_IMAGES
+        )
 
         return result == PackageManager.PERMISSION_GRANTED
     }
@@ -262,6 +267,7 @@ class MainActivity : AppCompatActivity() {
                     result = f.absolutePath
 
                     runOnUiThread {
+                        cancelProgressDialog()
                         if (result.isNotEmpty()) {
                             Toast.makeText(
                                 this@MainActivity,
@@ -283,6 +289,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return result
+    }
+
+    private fun showProgressDialog() {
+        customProgressDialog = Dialog(this@MainActivity)
+        customProgressDialog?.setContentView(R.layout.dialog_custom_progress)
+        customProgressDialog?.show()
+    }
+
+    private fun cancelProgressDialog() {
+        if (customProgressDialog != null) {
+            customProgressDialog?.dismiss()
+            customProgressDialog = null
+        }
     }
 
 }
